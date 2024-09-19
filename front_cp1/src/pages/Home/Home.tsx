@@ -22,7 +22,18 @@ const HomePage = () => {
                         <div className="product-item" key={product.id}>
                             <img src={product.imageUrl} alt={product.name} />
                             <h3>{product.name}</h3>
-                            <p>R${product.price}</p>
+                            {product.name === "Funko Braum" ? (
+                                <>
+                                    {product.originalPrice && (
+                                        <p style={{ textDecoration: 'line-through', color: 'red' }}>
+                                            R${product.originalPrice}
+                                        </p>
+                                    )}
+                                    <p>R${product.price}</p>
+                                </>
+                            ) : (
+                                <p>R${product.price}</p>
+                            )}
                             <button onClick={() => handleRemove(product.name)}>Excluir</button>
                         </div>
                     ))
